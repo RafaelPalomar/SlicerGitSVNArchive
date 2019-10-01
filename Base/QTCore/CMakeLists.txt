@@ -170,9 +170,7 @@ set(KIT_target_libraries
   MRMLDisplayableManager
   ${CTKAppLauncherLib_LIBRARIES}
   CTKCore
-  CTKImageProcessingITKCore
   CTKVisualizationVTKCore
-  ${ITK_LIBRARIES}
   )
 
 if(Slicer_BUILD_DICOM_SUPPORT)
