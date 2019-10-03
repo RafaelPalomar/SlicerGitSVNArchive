@@ -1,3 +1,21 @@
+project(Annotations)
+
+cmake_minimum_required(VERSION 3.0)
+
+find_package(Slicer REQUIRED)
+include(${Slicer_USE_FILE})
+
+find_package(Qt5 COMPONENTS Widgets Network Xml PrintSupport REQUIRED)
+find_package(VTK REQUIRED)
+include(${VTK_USE_FILE})
+
+find_package(CTK REQUIRED)
+include(${CTK_USE_FILE})
+
+find_package(ITK REQUIRED)
+include(${ITK_USE_FILE})
+
+link_directories(${Slicer_HOME}/${Slicer_INSTALL_LIB_DIR})
 
 #-----------------------------------------------------------------------------
 set(MODULE_NAME "Annotations")
@@ -76,6 +94,7 @@ set(MODULE_RESOURCES
   )
 
 set(MODULE_TARGET_LIBRARIES
+  qSlicerBaseQTGUI
   qSlicerBaseQTCore
   qMRMLWidgets
   vtkSlicer${MODULE_NAME}ModuleMRML
@@ -83,6 +102,7 @@ set(MODULE_TARGET_LIBRARIES
   vtkSlicer${MODULE_NAME}ModuleMRMLDisplayableManager
   vtkSlicer${MODULE_NAME}ModuleLogic
   qSlicer${MODULE_NAME}ModuleWidgets
+  Qt5::PrintSupport
   )
 
 #-----------------------------------------------------------------------------
@@ -90,7 +110,7 @@ slicerMacroBuildLoadableModule(
   NAME ${MODULE_NAME}
   TITLE ${MODULE_TITLE}
   EXPORT_DIRECTIVE ${MODULE_EXPORT_DIRECTIVE}
-  INCLUDE_DIRECTORIES ${MODULE_INCLUDE_DIRECTORIES}
+  INCLUDE_DIRECTORIES ${MODULE_INCLUDE_DIRECTORIES} ${Slicer_Base_INCLUDE_DIRS} ${Qt5PrintSupport_INCLUDE_DIRS}
   SRCS ${MODULE_SRCS}
   MOC_SRCS ${MODULE_MOC_SRCS}
   UI_SRCS ${MODULE_UI_SRCS}

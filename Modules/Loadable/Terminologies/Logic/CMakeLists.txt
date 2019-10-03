@@ -22,6 +22,10 @@ set(${KIT}_SRCS
   )
 
 set(${KIT}_TARGET_LIBRARIES
+  MRMLLogic
+  MRMLCore
+  ${CTK_LIBRARIES}
+  ${VTK_LIBRARIES}
   )
 
 #-----------------------------------------------------------------------------

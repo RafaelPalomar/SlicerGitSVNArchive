@@ -5,6 +5,7 @@ set(KIT ${PROJECT_NAME})
 set(${KIT}_EXPORT_DIRECTIVE "VTK_SLICER_${MODULE_NAME_UPPER}_MODULE_MRML_EXPORT")
 
 set(${KIT}_INCLUDE_DIRECTORIES
+  ${Slicer_Libs_INCLUDE_DIRS}
   )
 
 set(${KIT}_SRCS
@@ -60,10 +61,17 @@ set(${KIT}_SRCS
 
 set(${KIT}_TARGET_LIBRARIES
   ${MRML_LIBRARIES}
+  ${VTK_LIBRARIES}
+  ${ITK_LIBRARIES}
   )
+
+if(NOT Slicer_USE_PYTHONQT)
+  set(DISABLE_PYTHON DISABLE_WRAP_PYTHON)
+endif()
 
 #-----------------------------------------------------------------------------
 SlicerMacroBuildModuleMRML(
+  ${DISABLE_PYTHON}
   NAME ${KIT}
   EXPORT_DIRECTIVE ${${KIT}_EXPORT_DIRECTIVE}
   INCLUDE_DIRECTORIES ${${KIT}_INCLUDE_DIRECTORIES}

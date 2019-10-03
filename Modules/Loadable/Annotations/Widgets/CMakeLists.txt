@@ -51,6 +51,8 @@ set(${KIT}_RESOURCES
 set(${KIT}_TARGET_LIBRARIES
   vtkSlicerAnnotationsModuleMRML
   vtkSlicerAnnotationsModuleLogic
+  qMRMLWidgets
+  ${CTK_LIBRARIES}
   )
 
 #-----------------------------------------------------------------------------
