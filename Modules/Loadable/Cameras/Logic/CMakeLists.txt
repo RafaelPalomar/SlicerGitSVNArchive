@@ -13,6 +13,13 @@ set(${KIT}_SRCS
   )
 
 set(${KIT}_TARGET_LIBRARIES
+  ${VTK_LIBRARIES}
+  MRMLCore
+  MRMLLogic
+  qSlicerBaseQTCore
+  qSlicerBaseQTGUI
+  ${CTK_LIBRARIES}
+  qMRMLWidgets
   )
 
 #-----------------------------------------------------------------------------

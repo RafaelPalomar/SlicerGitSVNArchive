@@ -1,4 +1,22 @@
+project(Cameras)
 
+cmake_minimum_required(VERSION 3.0)
+
+find_package(Slicer REQUIRED)
+include(${Slicer_USE_FILE})
+
+find_package(Qt5 COMPONENTS Widgets Network Xml PrintSupport REQUIRED)
+find_package(VTK REQUIRED)
+include(${VTK_USE_FILE})
+
+find_package(CTK REQUIRED)
+include(${CTK_USE_FILE})
+
+find_package(ITK REQUIRED)
+include(${ITK_USE_FILE})
+
+link_directories(${Slicer_HOME}/${Slicer_INSTALL_LIB_DIR})
+ 
 #-----------------------------------------------------------------------------
 set(MODULE_NAME Cameras)
 set(MODULE_TITLE "${MODULE_NAME}")
