@@ -6,8 +6,10 @@ set(${KIT}_EXPORT_DIRECTIVE "Q_SLICER_MODULE_${MODULE_NAME_UPPER}_WIDGETS_EXPORT
 
 set(${KIT}_INCLUDE_DIRECTORIES
   ${vtkSlicerSubjectHierarchyModuleLogic_INCLUDE_DIRS}
-  ${qSlicerTerminologiesModuleWidgets_INCLUDE_DIRS}
+  ${Slicer_INSTALL_QTLOADABLEMODULES_INCLUDE_DIR}/qSlicerTerminologiesModuleWidgets
+  ${Slicer_INSTALL_QTLOADABLEMODULES_INCLUDE_DIR}/vtkSlicerTerminologiesModuleLogic
   ${MRMLCore_INCLUDE_DIRS}
+  ${Qt5Xml_INCLUDE_DIRS}
   )
 if(Slicer_BUILD_CLI_SUPPORT)
   list(APPEND ${KIT}_INCLUDE_DIRECTORIES
@@ -94,7 +96,12 @@ set_source_files_properties( qSlicerSubjectHierarchyAbstractPlugin.h WRAP_EXCLUD
 set(${KIT}_TARGET_LIBRARIES
   vtkSlicer${MODULE_NAME}ModuleLogic
   qSlicerTerminologiesModuleWidgets
+  vtkSlicerTerminologiesModuleLogic
   MRMLCore
+  qMRMLWidgets
+  qSlicerBaseQTCore
+  qSlicerBaseQTGUI
+  ${CTK_LIBRARIES}
   )
 if(Slicer_BUILD_CLI_SUPPORT)
   list(APPEND ${KIT}_TARGET_LIBRARIES

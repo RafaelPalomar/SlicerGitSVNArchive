@@ -1,3 +1,25 @@
+project(SubjectHierarchy)
+
+cmake_minimum_required(VERSION 3.0)
+
+find_package(Slicer REQUIRED)
+include(${Slicer_USE_FILE})
+
+find_package(Qt5 COMPONENTS Widgets Network Xml PrintSupport REQUIRED)
+find_package(VTK REQUIRED)
+include(${VTK_USE_FILE})
+
+find_package(CTK REQUIRED)
+include(${CTK_USE_FILE})
+
+find_package(ITK REQUIRED)
+include(${ITK_USE_FILE})
+
+link_directories(
+  ${Slicer_HOME}/${Slicer_INSTALL_LIB_DIR}
+  ${Slicer_INSTALL_QTLOADABLEMODULES_LIB_DIR}
+  )
+
 #-----------------------------------------------------------------------------
 set(MODULE_NAME "SubjectHierarchy")
 set(MODULE_TITLE "Subject Hierarchy")
@@ -39,6 +61,7 @@ set(MODULE_UI_SRCS
 set(MODULE_TARGET_LIBRARIES
   vtkSlicer${MODULE_NAME}ModuleLogic
   qSlicer${MODULE_NAME}ModuleWidgets
+  ${VTK_LIBRARIES}
   )
 
 set(MODULE_RESOURCES
