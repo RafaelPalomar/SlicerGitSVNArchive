@@ -31,7 +31,11 @@ set(${KIT}_RESOURCES
 
 set(${KIT}_TARGET_LIBRARIES
   vtkSlicerUnitsModuleLogic
+  qMRMLWidgets
+  ${CTK_LIBRARIES}
   )
+
+link_directories(${Slicer_HOME}/${Slicer_INSTALL_LIB_DIR})
 
 #-----------------------------------------------------------------------------
 SlicerMacroBuildModuleWidgets(
