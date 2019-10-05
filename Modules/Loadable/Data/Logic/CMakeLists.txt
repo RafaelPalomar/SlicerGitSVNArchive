@@ -14,7 +14,13 @@ set(${KIT}_SRCS
 
 set(${KIT}_TARGET_LIBRARIES
   ${ITK_LIBRARIES}
+  MRMLLogic
+  MRMLCore
+  SlicerBaseLogic
+  Qt5::Gui
   )
+
+link_directories(${Slicer_HOME}/${Slicer_INSTALL_LIB_DIR})
 
 #-----------------------------------------------------------------------------
 SlicerMacroBuildModuleLogic(

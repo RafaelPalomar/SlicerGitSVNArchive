@@ -1,3 +1,19 @@
+project(Units)
+
+cmake_minimum_required(VERSION 3.0)
+
+find_package(Slicer REQUIRED)
+include(${Slicer_USE_FILE})
+
+find_package(Qt5 COMPONENTS Widgets Network Xml PrintSupport REQUIRED)
+find_package(VTK REQUIRED)
+include(${VTK_USE_FILE})
+
+find_package(CTK REQUIRED)
+include(${CTK_USE_FILE})
+
+find_package(ITK REQUIRED)
+include(${ITK_USE_FILE})
 
 #-----------------------------------------------------------------------------
 set(MODULE_NAME Data)
@@ -17,8 +33,10 @@ set(MODULE_INCLUDE_DIRECTORIES
   ${CMAKE_CURRENT_BINARY_DIR}/Logic
   ${vtkSlicerCamerasModuleLogic_SOURCE_DIR}
   ${vtkSlicerCamerasModuleLogic_BINARY_DIR}
-  ${qSlicerSubjectHierarchyModuleWidgets_INCLUDE_DIRS}
+  ${Slicer_INSTALL_QTLOADABLEMODULES_INCLUDE_DIR}/vtkSlicerCamerasModuleLogic
+  ${Slicer_INSTALL_QTLOADABLEMODULES_INCLUDE_DIR}/qSlicerSubjectHierarchyModuleWidgets
   ${qMRMLWidgets_INCLUDE_DIRS}
+  ${Qt5Widgets_INCLUDE_DIRS}
   )
 
 set(MODULE_SRCS
@@ -52,10 +70,19 @@ set(MODULE_TARGET_LIBRARIES
   vtkSlicerCamerasModuleLogic
   qSlicerSubjectHierarchyModuleWidgets
   qMRMLWidgets
+  qSlicerBaseQTGUI
+  qSlicerBaseQTCore
+  Qt5::Widgets
+  ${CTK_LIBRARIES}
   )
 
 set(MODULE_RESOURCES
   Resources/qSlicer${MODULE_NAME}Module.qrc
+  )
+
+link_directories(
+  ${Slicer_HOME}/${Slicer_INSTALL_LIB_DIR}
+  ${Slicer_INSTALL_QTLOADABLEMODULES_LIB_DIR}
   )
 
 #-----------------------------------------------------------------------------
