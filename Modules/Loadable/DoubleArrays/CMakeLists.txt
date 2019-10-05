@@ -1,4 +1,21 @@
 
+project(Annotations)
+
+cmake_minimum_required(VERSION 3.0)
+
+find_package(Slicer REQUIRED)
+include(${Slicer_USE_FILE})
+
+find_package(Qt5 COMPONENTS Widgets Network Xml PrintSupport REQUIRED)
+find_package(VTK REQUIRED)
+include(${VTK_USE_FILE})
+
+find_package(CTK REQUIRED)
+include(${CTK_USE_FILE})
+
+find_package(ITK REQUIRED)
+include(${ITK_USE_FILE})
+
 #-----------------------------------------------------------------------------
 set(MODULE_NAME DoubleArrays)
 set(MODULE_TITLE ${MODULE_NAME})
@@ -21,6 +38,7 @@ set(MODULE_EXPORT_DIRECTIVE "Q_SLICER_QTMODULES_${MODULE_NAME_UPPER}_EXPORT")
 set(MODULE_INCLUDE_DIRECTORIES
   ${CMAKE_CURRENT_SOURCE_DIR}/Logic
   ${CMAKE_CURRENT_BINARY_DIR}/Logic
+  ${Qt5Widgets_INCLUDE_DIRS}
   )
 
 set(MODULE_SRCS
@@ -40,10 +58,16 @@ set(MODULE_UI_SRCS
 
 set(MODULE_TARGET_LIBRARIES
   vtkSlicer${MODULE_NAME}ModuleLogic
+  Qt5::Core
+  qSlicerBaseQTCore
+  qSlicerBaseQTGUI
+  ${CTK_LIBRARIES}
   )
 
 set(MODULE_RESOURCES
   )
+
+link_directories(${Slicer_HOME}/${Slicer_INSTALL_LIB_DIR})
 
 #-----------------------------------------------------------------------------
 slicerMacroBuildLoadableModule(
@@ -64,7 +88,3 @@ if(BUILD_TESTING)
   add_subdirectory(Testing)
 endif()
 
-#-----------------------------------------------------------------------------
-if(NOT Slicer_SOURCE_DIR)
-  include(${Slicer_EXTENSION_CPACK})
-endif()
