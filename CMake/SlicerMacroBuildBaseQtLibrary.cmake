@@ -141,6 +141,9 @@ macro(SlicerMacroBuildBaseQtLibrary)
     set(_moc_options OPTIONS -DSlicer_HAVE_QT5)
     QT5_WRAP_CPP(SLICERQTBASELIB_MOC_OUTPUT ${SLICERQTBASELIB_MOC_SRCS} ${_moc_options})
     QT5_WRAP_UI(SLICERQTBASELIB_UI_CXX ${SLICERQTBASELIB_UI_SRCS})
+
+    message(STATUS "---------------->>> ${SLICERQTBASELIB_UI_SRCS}")
+    message(STATUS "================>>> ${SLICERQTBASELIB_UI_CXX}")
     if(DEFINED SLICERQTBASELIB_RESOURCES)
       QT5_ADD_RESOURCES(SLICERQTBASELIB_QRC_SRCS ${SLICERQTBASELIB_RESOURCES})
     endif()
@@ -237,6 +240,11 @@ macro(SlicerMacroBuildBaseQtLibrary)
     install(FILES
       ${headers}
       ${dynamicHeaders}
+      DESTINATION ${Slicer_INSTALL_INCLUDE_DIR}/${PROJECT_NAME} COMPONENT Development
+      )
+
+    install(FILES
+      ${SLICERQTBASELIB_UI_CXX}
       DESTINATION ${Slicer_INSTALL_INCLUDE_DIR}/${PROJECT_NAME} COMPONENT Development
       )
   endif()
