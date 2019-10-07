@@ -60,7 +60,7 @@ if(Slicer_BUILD_DICOM_SUPPORT AND NOT Slicer_USE_SYSTEM_DCMTK)
 endif()
 
 # Install Qt designer launcher
-if(Slicer_BUILD_QT_DESIGNER_PLUGINS)
+if(Slicer_BUILD_QT_DESIGNER_PLUGINS AND Slicer_USE_CTKAPPLAUNCHER)
   set(executablename "SlicerDesigner")
   set(build_designer_executable "${QT_BINARY_DIR}/designer${CMAKE_EXECUTABLE_SUFFIX}")
   if(APPLE)
