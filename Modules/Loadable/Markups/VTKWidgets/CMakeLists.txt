@@ -58,6 +58,8 @@ set(${KIT}_TARGET_LIBRARIES
   vtkSlicer${MODULE_NAME}ModuleMRML
   )
 
+link_directories(${Slicer_HOME}/${Slicer_INSTALL_LIB_DIR})
+
 #-----------------------------------------------------------------------------
 SlicerMacroBuildModuleLogic(
   NAME ${KIT}
