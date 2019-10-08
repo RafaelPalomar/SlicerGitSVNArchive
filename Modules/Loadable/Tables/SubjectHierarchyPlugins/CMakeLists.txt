@@ -5,6 +5,10 @@ set(KIT ${PROJECT_NAME})
 set(${KIT}_EXPORT_DIRECTIVE "Q_SLICER_${MODULE_NAME_UPPER}_SUBJECT_HIERARCHY_PLUGINS_EXPORT")
 
 set(${KIT}_INCLUDE_DIRECTORIES
+  ${Slicer_INSTALL_QTLOADABLEMODULES_INCLUDE_DIR}/qSlicerSubjectHierarchyModuleWidgets
+  ${Slicer_Libs_INCLUDE_DIRS}
+  ${Slicer_Base_INCLUDE_DIRS}
+  ${Qt5Xml_INCLUDE_DIRS}
   ${vtkSlicerTablesModuleLogic_INCLUDE_DIRS}
   ${qSlicerSubjectHierarchyModuleWidgets_INCLUDE_DIRS}
   ${vtkSlicerSubjectHierarchyModuleLogic_INCLUDE_DIRS}
@@ -38,7 +42,15 @@ set(${KIT}_TARGET_LIBRARIES
   qMRMLWidgets
   MRMLLogic
   MRMLCore
+  qSlicerBaseQTGUI
+  qSlicerBaseQTCore
+  ${CTK_LIBRARIES}
   )
+
+link_directories(
+  ${Slicer_HOME}/${Slicer_INSTALL_LIB_DIR}
+  ${Slicer_INSTALL_QTLOADABLEMODULES_LIB_DIR}
+)
 
 #-----------------------------------------------------------------------------
 SlicerMacroBuildModuleQtLibrary(
