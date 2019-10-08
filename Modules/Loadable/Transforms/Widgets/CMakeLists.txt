@@ -7,6 +7,7 @@ set(${KIT}_EXPORT_DIRECTIVE "Q_SLICER_MODULE_${MODULE_NAME_UPPER}_WIDGETS_EXPORT
 set(${KIT}_INCLUDE_DIRECTORIES
   ${vtkSlicer${MODULE_NAME}ModuleLogic_SOURCE_DIR}
   ${vtkSlicer${MODULE_NAME}ModuleLogic_BINARY_DIR}
+  ${Qt5Widgets_INCLUDE_DIRS}
   )
 
 set(${KIT}_SRCS
@@ -31,7 +32,17 @@ set(${KIT}_RESOURCES
   )
 
 set(${KIT}_TARGET_LIBRARIES
+  Qt5::Widgets
+  qMRMLWidgets
+  ${VTK_LIBRARIES}
+  ${CTK_LIBRARIES}
+  MRMLLogic
+  MRMLCore
   )
+
+link_directories(
+  ${Slicer_HOME}/${Slicer_INSTALL_LIB_DIR}
+)
 
 #-----------------------------------------------------------------------------
 SlicerMacroBuildModuleWidgets(

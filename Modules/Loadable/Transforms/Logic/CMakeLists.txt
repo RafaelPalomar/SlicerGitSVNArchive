@@ -5,6 +5,7 @@ set(KIT ${PROJECT_NAME})
 set(${KIT}_EXPORT_DIRECTIVE "VTK_SLICER_${MODULE_NAME_UPPER}_MODULE_LOGIC_EXPORT")
 
 set(${KIT}_INCLUDE_DIRECTORIES
+  ${Slicer_INSTALL_QTLOADABLEMODULES_INCLUDE_DIR}/vtkSlicerMarkupsModuleMRML
   ${vtkSlicerMarkupsModuleMRML_INCLUDE_DIRS}
   )
 
@@ -15,8 +16,18 @@ set(${KIT}_SRCS
 
 set(${KIT}_TARGET_LIBRARIES
   MRMLCore
+  MRMLLogic
+  SlicerBaseLogic
+  ${VTK_LIBRARIES}
+  ${ITK_LIBRARIES}
+  vtkAddon
   vtkSlicerMarkupsModuleMRML
   )
+
+link_directories(
+  ${Slicer_HOME}/${Slicer_INSTALL_LIB_DIR}
+  ${Slicer_INSTALL_QTLOADABLEMODULES_LIB_DIR}
+)
 
 #-----------------------------------------------------------------------------
 SlicerMacroBuildModuleLogic(

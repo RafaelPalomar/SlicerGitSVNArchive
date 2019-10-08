@@ -10,6 +10,7 @@ set(${KIT}_INCLUDE_DIRECTORIES
   ${vtkSlicer${MODULE_NAME}ModuleMRML_SOURCE_DIR}
   ${vtkSlicer${MODULE_NAME}ModuleMRML_BINARY_DIR}
   ${CMAKE_CURRENT_BINARY_DIR}
+  ${Slicer_INSTALL_QTLOADABLEMODULES_INCLUDE_DIR}/vtkSlicerMarkupsModuleMRML
   )
 
 set(displayable_manager_SRCS
@@ -35,6 +36,11 @@ set(${KIT}_TARGET_LIBRARIES
   ${MRML_LIBRARIES}
   vtkSlicerTransformsModuleLogic
   )
+
+link_directories(
+  ${Slicer_HOME}/${Slicer_INSTALL_LIB_DIR}
+  ${Slicer_INSTALL_QTLOADABLEMODULES_LIB_DIR}
+)
 
 #-----------------------------------------------------------------------------
 SlicerMacroBuildModuleLogic(
