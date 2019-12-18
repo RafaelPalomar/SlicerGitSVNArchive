@@ -4,10 +4,11 @@ set(KIT ${PROJECT_NAME})
 
 set(${KIT}_EXPORT_DIRECTIVE "VTK_SLICER_${MODULE_NAME_UPPER}_MODULE_MRML_EXPORT")
 
-find_package(JsonCpp REQUIRED)
+find_package(jsoncpp REQUIRED)
+get_target_property(jsoncpp_INCLUDE_DIRS jsoncpp_lib INTERFACE_INCLUDE_DIRECTORIES)
 
 set(${KIT}_INCLUDE_DIRECTORIES
-  ${JsonCpp_INCLUDE_DIR}
+  ${jsoncpp_INCLUDE_DIRS}
   )
 
 set(${KIT}_SRCS
@@ -31,7 +32,7 @@ set(${KIT}_SRCS
 
 set(${KIT}_TARGET_LIBRARIES
   ${ITK_LIBRARIES}
-  ${JsonCpp_LIBRARY}
+  jsoncpp_lib
   ${MRML_LIBRARIES}
   vtkSlicerAnnotationsModuleMRML
   )

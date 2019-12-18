@@ -128,7 +128,10 @@ set(CTEST_CUSTOM_WARNING_EXCEPTION
   "ld.*has different visibility.*(libdcmdata|libdcmnet|libdcmimgle|liboflog|libofstd).a"
   "DCMTK.(ofstd|dcmdata|dcmjpls|dcmnet|dcmimage|dcmimgle|dcmpstat|dcmqrdb).(lib|include|apps).*conversion from '(size_t|SOCKET)' to '.*', possible loss of data"
 
-  # JsonCpp
+  # EMSegment
+  "warning: the use of .mktemp. is dangerous, better use .mkstemp."
+
+  # jsoncpp
   "json.(reader|value).h.*warning C4275.*non dll-interface class"
 
   # Libs/tclap

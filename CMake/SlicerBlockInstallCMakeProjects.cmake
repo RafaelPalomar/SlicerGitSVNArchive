@@ -42,15 +42,15 @@ if(NOT "${SimpleITK_DIR}" STREQUAL "" AND EXISTS "${SimpleITK_DIR}/CMakeCache.tx
 endif()
 
 # -------------------------------------------------------------------------
-# Install JsonCpp
+# Install jsoncpp
 # -------------------------------------------------------------------------
 
-# JsonCpp is required to build VolumeRendering module
+# jsoncpp is required to build VolumeRendering module
 slicer_is_loadable_builtin_module_enabled("VolumeRendering" _build_volume_rendering_module)
 
 if((Slicer_BUILD_PARAMETERSERIALIZER_SUPPORT OR _build_volume_rendering_module)
-  AND NOT "${JsonCpp_DIR}" STREQUAL "" AND EXISTS "${JsonCpp_DIR}/CMakeCache.txt")
-  set(CPACK_INSTALL_CMAKE_PROJECTS "${CPACK_INSTALL_CMAKE_PROJECTS};${JsonCpp_DIR};JsonCpp;Unspecified;/")
+  AND NOT "${jsoncpp_DIR}" STREQUAL "" AND EXISTS "${jsoncpp_DIR}/CMakeCache.txt")
+  set(CPACK_INSTALL_CMAKE_PROJECTS "${CPACK_INSTALL_CMAKE_PROJECTS};${jsoncpp_DIR};jsoncpp;Unspecified;/")
 endif()
 
 # -------------------------------------------------------------------------
