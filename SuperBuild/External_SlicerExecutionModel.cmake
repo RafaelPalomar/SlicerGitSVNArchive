@@ -5,7 +5,7 @@ set(proj SlicerExecutionModel)
 set(${proj}_DEPENDENCIES ${ITK_EXTERNAL_NAME})
 
 if(Slicer_BUILD_PARAMETERSERIALIZER_SUPPORT)
-  set(${proj}_DEPENDENCIES ${${proj}_DEPENDENCIES} JsonCpp ParameterSerializer)
+  set(${proj}_DEPENDENCIES ${${proj}_DEPENDENCIES} jsoncpp ParameterSerializer)
 endif()
 
 # Include dependent projects if any
@@ -33,13 +33,13 @@ if(NOT DEFINED SlicerExecutionModel_DIR AND NOT Slicer_USE_SYSTEM_${proj})
 
   if(Slicer_BUILD_PARAMETERSERIALIZER_SUPPORT)
     list(APPEND EXTERNAL_PROJECT_OPTIONAL_CMAKE_CACHE_ARGS
-      -DJsonCpp_INCLUDE_DIR:PATH=${JsonCpp_INCLUDE_DIR}
+      -Djsoncpp_INCLUDE_DIR:PATH=${jsoncpp_INCLUDE_DIR}
       -DParameterSerializer_DIR:PATH=${ParameterSerializer_DIR}
       )
     # JsoncCpp_LIBRARY needs to be added as a CMAKE_ARGS because it contains an
     # expression that needs to be evaluated
     list(APPEND EXTERNAL_PROJECT_OPTIONAL_CMAKE_ARGS
-      -DJsonCpp_LIBRARY:PATH=${JsonCpp_LIBRARY}
+      -Djsoncpp_LIBRARY:PATH=${jsoncpp_LIBRARY}
       )
   endif()
 
