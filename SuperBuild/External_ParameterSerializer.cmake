@@ -2,7 +2,7 @@
 set( proj ParameterSerializer )
 
 # Set dependency list
-set(${proj}_DEPENDENCIES JsonCpp ITK)
+set(${proj}_DEPENDENCIES jsoncpp ITK)
 
 # Include dependent projects if any
 ExternalProject_Include_Dependencies(${proj} PROJECT_VAR proj DEPENDS_VAR ${proj}_DEPENDENCIES)
@@ -48,8 +48,8 @@ if(NOT DEFINED ${proj}_DIR AND NOT Slicer_USE_SYSTEM_${proj})
       -DCMAKE_CXX_EXTENSIONS:BOOL=${CMAKE_CXX_EXTENSIONS}
       -DBUILD_TESTING:BOOL=OFF
       #-DBUILD_SHARED:BOOL=ON
-      -DJsonCpp_INCLUDE_DIR:PATH=${JsonCpp_INCLUDE_DIR}
-      -DJsonCpp_LIBRARY:PATH=${JsonCpp_LIBRARY}
+      -Djsoncpp_INCLUDE_DIR:PATH=${jsoncpp_INCLUDE_DIR}
+      -Djsoncpp_LIBRARY:PATH=${jsoncpp_LIBRARY}
       -DITK_DIR:PATH=${ITK_DIR}
     INSTALL_COMMAND ""
     DEPENDS

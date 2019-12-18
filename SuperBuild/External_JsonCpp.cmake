@@ -1,5 +1,5 @@
 
-set( proj JsonCpp )
+set( proj jsoncpp )
 
 # Set dependency list
 set(${proj}_DEPENDENCIES "")
@@ -80,7 +80,7 @@ if(NOT DEFINED ${proj}_DIR AND NOT Slicer_USE_SYSTEM_${proj})
   #-----------------------------------------------------------------------------
   # Launcher setting specific to build tree
 
-  set(${proj}_LIBRARY_PATHS_LAUNCHER_BUILD ${JsonCpp_DIR}/src/lib_json/<CMAKE_CFG_INTDIR>)
+  set(${proj}_LIBRARY_PATHS_LAUNCHER_BUILD ${jsoncpp_DIR}/src/lib_json/<CMAKE_CFG_INTDIR>)
   mark_as_superbuild(
     VARS ${proj}_LIBRARY_PATHS_LAUNCHER_BUILD
     LABELS "LIBRARY_PATHS_LAUNCHER_BUILD"
@@ -98,12 +98,12 @@ mark_as_superbuild(
   VARS ${proj}_LIBRARY:PATH
   LABELS "FIND_PACKAGE"
   )
-# JsonCpp is a project built using CMake. JsconCpp_DIR ensures the install
-# rules will be used to create the Slicer package. However because JsonCpp
-# doesn't provide a JsonCppConfig.cmake, it is not yet associated with the
+# jsoncpp is a project built using CMake. JsconCpp_DIR ensures the install
+# rules will be used to create the Slicer package. However because jsoncpp
+# doesn't provide a jsoncppConfig.cmake, it is not yet associated with the
 # "FIND_PACKAGE" label.
-# Instead the variables JsonCpp_INCLUDE_DIR and JsonCpp_LIBRARY are
-# expected to be set to ensure FindJsonCpp.cmake finds everything.
+# Instead the variables jsoncpp_INCLUDE_DIR and jsoncpp_LIBRARY are
+# expected to be set to ensure Findjsoncpp.cmake finds everything.
 mark_as_superbuild(
   VARS ${proj}_DIR:PATH
   )
