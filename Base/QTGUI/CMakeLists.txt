@@ -9,6 +9,8 @@ project(qSlicerBaseQTGUI)
 #
 find_package(ITK COMPONENTS ITKCommon REQUIRED)
 
+find_package(SlicerExecutionModel REQUIRED ModuleDescriptionParser)
+
 set(KIT_export_directive "Q_SLICER_BASE_QTGUI_EXPORT")
 
 # Additional directories to include
