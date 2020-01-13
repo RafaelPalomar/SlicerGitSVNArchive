@@ -4,6 +4,8 @@ project(qSlicerBaseQTApp)
 # See CMake/SlicerMacroBuildBaseQtLibrary.cmake for details
 #
 
+find_package(SlicerExecutionModel REQUIRED ModuleDescriptionParser)
+
 set(KIT_export_directive "Q_SLICER_BASE_QTAPP_EXPORT")
 
 # Additional directories to include

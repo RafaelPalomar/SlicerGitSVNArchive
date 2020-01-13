@@ -5,6 +5,8 @@ project(qSlicerModulesCore)
 #
 set(KIT_export_directive "Q_SLICER_MODULES_CORE_EXPORT")
 
+find_package(SlicerExecutionModel REQUIRED ModuleDescriptionParser)
+
 # Additional directories to include
 set(KIT_include_directories
   ${qSlicerBaseQTGUI_SOURCE_DIR}

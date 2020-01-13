@@ -1,6 +1,8 @@
 
 project(SlicerApp)
 
+find_package(SlicerExecutionModel REQUIRED ModuleDescriptionParser)
+
 include(SlicerMacroBuildApplication)
 
 # --------------------------------------------------------------------------
