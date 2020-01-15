@@ -93,6 +93,7 @@ set(Slicer_Base_LIBRARY_DIRS
 set(Slicer_Base_INCLUDE_DIRS
   "${Slicer_HOME}/@Slicer_INSTALL_INCLUDE_DIR@"
   "${Slicer_HOME}/@Slicer_INSTALL_INCLUDE_DIR@/SlicerBaseCLI"
+  "${Slicer_HOME}/@Slicer_INSTALL_INCLUDE_DIR@/SlicerBaseLogic"
   "${Slicer_HOME}/@Slicer_INSTALL_INCLUDE_DIR@/qSlicerBaseQTApp"
   "${Slicer_HOME}/@Slicer_INSTALL_INCLUDE_DIR@/qSlicerBaseQTGUI"
   "${Slicer_HOME}/@Slicer_INSTALL_INCLUDE_DIR@/qSlicerBaseQTCore"
