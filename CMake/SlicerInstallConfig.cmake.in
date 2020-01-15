@@ -90,6 +90,7 @@ set(Slicer_Base_LIBRARY_DIRS
 # Slicer Base include file directories.
 set(Slicer_Base_INCLUDE_DIRS
   "${Slicer_HOME}/@Slicer_INSTALL_INCLUDE_DIR@"
+  "${Slicer_HOME}/@Slicer_INSTALL_INCLUDE_DIR@/MRMLCLI"
   "${Slicer_HOME}/@Slicer_INSTALL_INCLUDE_DIR@/SlicerBaseCLI"
   "${Slicer_HOME}/@Slicer_INSTALL_INCLUDE_DIR@/SlicerBaseLogic"
   "${Slicer_HOME}/@Slicer_INSTALL_INCLUDE_DIR@/qSlicerBaseQTApp"
