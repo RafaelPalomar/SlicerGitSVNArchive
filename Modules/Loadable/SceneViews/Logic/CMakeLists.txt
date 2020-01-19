@@ -15,6 +15,15 @@ set(${KIT}_SRCS
   )
 
 set(${KIT}_TARGET_LIBRARIES
+  MRMLLogic
+  MRMLCore
+  SlicerBaseLogic
+  ${VTK_LIBRARIES}
+  )
+
+link_directories(
+  ${Slicer_HOME}/${Slicer_INSTALL_LIB_DIR}
+  ${Slicer_INSTALL_QTLOADABLEMODULES_LIB_DIR}
   )
 
 #-----------------------------------------------------------------------------
