@@ -29,7 +29,15 @@ set(${KIT}_SRCS
 set(${KIT}_TARGET_LIBRARIES
   ${MRML_LIBRARIES}
   vtkSlicerSegmentationsModuleMRML
+  MRMLCore
   )
+
+link_directories(
+  ${Slicer_HOME}/${Slicer_INSTALL_LIB_DIR}
+  ${Slicer_INSTALL_QTLOADABLEMODULES_LIB_DIR}
+  ${Slicer_Libs_LIB_DIRS}
+)
+
 
 #-----------------------------------------------------------------------------
 SlicerMacroBuildModuleLogic(

@@ -5,6 +5,9 @@ set(KIT ${PROJECT_NAME})
 set(${KIT}_EXPORT_DIRECTIVE "Q_SLICER_MODULE_${MODULE_NAME_UPPER}_WIDGETS_EXPORT")
 
 set(${KIT}_INCLUDE_DIRECTORIES
+  ${Slicer_INSTALL_QTLOADABLEMODULES_INCLUDE_DIR}/qSlicerTerminologiesModuleWidgets
+  ${Slicer_INSTALL_QTLOADABLEMODULES_INCLUDE_DIR}/vtkSlicerTerminologiesModuleLogic
+  ${Slicer_INSTALL_QTLOADABLEMODULES_INCLUDE_DIR}/vtkSlicerAnnotationsModuleMRML
   ${vtkSlicerSegmentationsModuleMRML_INCLUDE_DIRS}
   ${vtkSlicerSegmentationsModuleLogic_INCLUDE_DIRS}
   ${qSlicerSegmentationsEditorEffects_INCLUDE_DIRS}
@@ -70,7 +73,14 @@ set(${KIT}_TARGET_LIBRARIES
   vtkSlicerSegmentationsModuleLogic
   qSlicerSegmentationsEditorEffects
   qSlicerTerminologiesModuleWidgets
+  qSlicerBaseQTCore
   )
+
+link_directories(
+  ${Slicer_HOME}/${Slicer_INSTALL_LIB_DIR}
+  ${Slicer_INSTALL_QTLOADABLEMODULES_LIB_DIR}
+  ${Slicer_Libs_LIB_DIRS}
+)
 
 #-----------------------------------------------------------------------------
 SlicerMacroBuildModuleWidgets(

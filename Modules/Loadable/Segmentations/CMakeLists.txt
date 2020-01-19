@@ -1,3 +1,21 @@
+project(Annotations)
+
+cmake_minimum_required(VERSION 3.0)
+
+find_package(Slicer REQUIRED)
+include(${Slicer_USE_FILE})
+
+find_package(Qt5 COMPONENTS Widgets Network Xml PrintSupport REQUIRED)
+find_package(VTK REQUIRED)
+include(${VTK_USE_FILE})
+
+find_package(CTK REQUIRED)
+include(${CTK_USE_FILE})
+
+find_package(ITK REQUIRED)
+include(${ITK_USE_FILE})
+
+
 #-----------------------------------------------------------------------------
 set(MODULE_NAME "Segmentations")
 set(MODULE_TITLE ${MODULE_NAME})
@@ -16,6 +34,9 @@ add_subdirectory(SubjectHierarchyPlugins)
 set(MODULE_EXPORT_DIRECTIVE "Q_SLICER_QTMODULES_${MODULE_NAME_UPPER}_EXPORT")
 
 set(MODULE_INCLUDE_DIRECTORIES
+  ${Slicer_INSTALL_QTLOADABLEMODULES_INCLUDE_DIR}/qSlicerSubjectHierarchyModuleWidgets
+  ${Slicer_INSTALL_QTLOADABLEMODULES_INCLUDE_DIR}/vtkSlicerTerminologiesModuleLogic
+  ${Slicer_INSTALL_QTLOADABLEMODULES_INCLUDE_DIR}/qSlicerTerminologiesModuleWidgets
   ${vtkSlicerSegmentationsModuleMRML_INCLUDE_DIRS}
   ${vtkSlicerSegmentationsModuleLogic_INCLUDE_DIRS}
   ${vtkSlicerSegmentationsModuleMRMLDisplayableManager_INCLUDE_DIRS}
@@ -23,8 +44,6 @@ set(MODULE_INCLUDE_DIRECTORIES
   ${qSlicerSegmentationsEditorEffects_INCLUDE_DIRS}
   ${qSlicerSegmentationsSubjectHierarchyPlugins_INCLUDE_DIRS}
   ${qSlicerSubjectHierarchyModuleWidgets_INCLUDE_DIRS}
-  ${qSlicerTerminologiesModuleWidgets_INCLUDE_DIRS}
-  ${vtkSlicerTerminologiesModuleLogic_INCLUDE_DIRS}
   )
 
 set(MODULE_SRCS
@@ -76,6 +95,12 @@ set(MODULE_TARGET_LIBRARIES
 set(MODULE_RESOURCES
   Resources/qSlicer${MODULE_NAME}Module.qrc
   )
+
+link_directories(
+  ${Slicer_HOME}/${Slicer_INSTALL_LIB_DIR}
+  ${Slicer_INSTALL_QTLOADABLEMODULES_LIB_DIR}
+  ${Slicer_Libs_LIB_DIRS}
+)
 
 #-----------------------------------------------------------------------------
 slicerMacroBuildLoadableModule(

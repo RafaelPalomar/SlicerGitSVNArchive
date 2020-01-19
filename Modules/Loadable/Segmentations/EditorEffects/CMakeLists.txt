@@ -5,6 +5,7 @@ set(KIT ${PROJECT_NAME})
 set(${KIT}_EXPORT_DIRECTIVE "Q_SLICER_${MODULE_NAME_UPPER}_EFFECTS_EXPORT")
 
 set(${KIT}_INCLUDE_DIRECTORIES
+  ${Slicer_Libs_INCLUDE_DIRS}
   ${vtkSlicerSegmentationsModuleMRML_INCLUDE_DIRS}
   ${vtkSlicerSegmentationsModuleMRMLDisplayableManager_INCLUDE_DIRS}
   ${vtkSlicerSegmentationsModuleLogic_INCLUDE_DIRS}
@@ -13,6 +14,7 @@ set(${KIT}_INCLUDE_DIRECTORIES
   ${MRMLLogic_INCLUDE_DIRS}
   ${MRMLCore_INCLUDE_DIRS}
   ${MRMLDisplayableManager_INCLUDE_DIRS}
+  ${Qt5Xml_INCLUDE_DIRS}
   )
 
 set(${KIT}_SRCS
@@ -66,6 +68,7 @@ set(${KIT}_RESOURCES
   Resources/${KIT}.qrc
   )
 
+
 #-----------------------------------------------------------------------------
 set(${KIT}_TARGET_LIBRARIES
   vtkSlicerSegmentationsModuleMRML
@@ -75,7 +78,14 @@ set(${KIT}_TARGET_LIBRARIES
   MRMLLogic
   MRMLCore
   qSlicerBaseQTGUI # required for access to qSlicerApplication singletons
+  ${CTK_LIBRARIES}
   )
+
+link_directories(
+  ${Slicer_HOME}/${Slicer_INSTALL_LIB_DIR}
+  ${Slicer_INSTALL_QTLOADABLEMODULES_LIB_DIR}
+  ${Slicer_Libs_LIB_DIRS}
+)
 
 #-----------------------------------------------------------------------------
 SlicerMacroBuildModuleQtLibrary(

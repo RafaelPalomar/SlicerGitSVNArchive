@@ -19,12 +19,24 @@ set(${KIT}_SRCS
 
 set(${KIT}_TARGET_LIBRARIES
   MRMLCore
+  SlicerBaseLogic
   vtkSegmentationCore
   vtkSlicerSubjectHierarchyModuleLogic
+  ${VTK_LIBRARIES}
   )
+
+link_directories(
+  ${Slicer_HOME}/${Slicer_INSTALL_LIB_DIR}
+  ${Slicer_INSTALL_QTLOADABLEMODULES_LIB_DIR}
+  )
+
+if(NOT Slicer_USE_PYTHONQT)
+  set(DISABLE_PYTHON DISABLE_WRAP_PYTHON)
+endif()
 
 # --------------------------------------------------------------------------
 SlicerMacroBuildModuleMRML(
+  ${DISABLE_PYTHON}
   NAME ${KIT}
   EXPORT_DIRECTIVE ${${KIT}_EXPORT_DIRECTIVE}
   INCLUDE_DIRECTORIES ${${KIT}_INCLUDE_DIRECTORIES}
