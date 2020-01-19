@@ -1,3 +1,19 @@
+project(Reformat)
+
+cmake_minimum_required(VERSION 3.0)
+
+find_package(Slicer REQUIRED)
+include(${Slicer_USE_FILE})
+
+find_package(Qt5 COMPONENTS Widgets Network Xml PrintSupport REQUIRED)
+find_package(VTK REQUIRED)
+include(${VTK_USE_FILE})
+
+find_package(CTK REQUIRED)
+include(${CTK_USE_FILE})
+
+find_package(ITK REQUIRED)
+include(${ITK_USE_FILE})
 
 #-----------------------------------------------------------------------------
 set(MODULE_NAME Reformat)
@@ -13,10 +29,11 @@ set(MODULE_EXPORT_DIRECTIVE "Q_SLICER_QTMODULES_${MODULE_NAME_UPPER}_EXPORT")
 
 # Additional includes - Current_{source,binary} and Slicer_{Libs,Base} already included
 set(MODULE_INCLUDE_DIRECTORIES
-  ${CMAKE_CURRENT_SOURCE_DIR}/Widgets
-  ${CMAKE_CURRENT_BINARY_DIR}/Widgets
   ${CMAKE_CURRENT_SOURCE_DIR}/Logic
   ${CMAKE_CURRENT_BINARY_DIR}/Logic
+  ${Qt5Gui_INCLUDE_DIRS}
+  ${Qt5Widgets_INCLUDE_DIRS}
+  ${Slicer_Libs_INCLUDE_DIRS}
   )
 
 set(MODULE_SRCS
@@ -37,11 +54,18 @@ set(MODULE_UI_SRCS
 
 set(MODULE_TARGET_LIBRARIES
   vtkSlicer${MODULE_NAME}ModuleLogic
+  qSlicerBaseQTGUI
+  qSlicerBaseQTCore
+  Qt5::Widgets
+  ${CTK_LIBRARIES}
+  qMRMLWidgets
   )
 
 set(MODULE_RESOURCES
   Resources/qSlicer${MODULE_NAME}Module.qrc
   )
+
+link_directories(${Slicer_HOME}/${Slicer_INSTALL_LIB_DIR})
 
 #-----------------------------------------------------------------------------
 slicerMacroBuildLoadableModule(
