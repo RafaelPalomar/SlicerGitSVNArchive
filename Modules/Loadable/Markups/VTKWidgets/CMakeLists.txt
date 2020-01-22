@@ -52,6 +52,8 @@ set(${KIT}_SRCS
   vtkSlicerPointsRepresentation2D.h
   vtkSlicerPointsWidget.cxx
   vtkSlicerPointsWidget.h
+  vtkBezierSurfaceSource.cxx
+  vtkBezierSurfaceSource.h
   )
 
 set(${KIT}_TARGET_LIBRARIES

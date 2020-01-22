@@ -24,6 +24,8 @@
 #include "vtkSlicerBezierSurfaceRepresentation3D.h"
 #include "vtkTubeFilter.h"
 #include "vtkCellArray.h"
+#include "vtkPolyLine.h"
+#include "vtkBezierSurfaceSource.h"
 
 // MRML includes
 #include "vtkMRMLInteractionEventData.h"
@@ -31,11 +33,14 @@
 
 vtkStandardNewMacro(vtkSlicerBezierSurfaceRepresentation3D);
 
+
 //----------------------------------------------------------------------
 vtkSlicerBezierSurfaceRepresentation3D::vtkSlicerBezierSurfaceRepresentation3D()
 {
   this->ControlPolygon = vtkSmartPointer<vtkPolyData>::New();
-  this->BezierSurface = vtkSmartPointer<vtkPolyData>::New();
+  this->BezierSurfaceSource = vtkSmartPointer<vtkBezierSurfaceSource>::New();
+  this->BezierSurfaceSource->SetNumberOfControlPoints(4,4);
+  this->BezierSurfaceSource->SetResolution(50,50);
 
   this->TubeFilter = vtkSmartPointer<vtkTubeFilter>::New();
   this->TubeFilter->SetInputData(this->ControlPolygon);
@@ -43,15 +48,17 @@ vtkSlicerBezierSurfaceRepresentation3D::vtkSlicerBezierSurfaceRepresentation3D()
   this->TubeFilter->SetRadius(1);
 
   this->ControlPolygonMapper = vtkSmartPointer<vtkPolyDataMapper>::New();
-  //  this->ControlPolygonMapper->SetInputConnection(this->TubeFilter->GetOutputPort());
+  //this->ControlPolygonMapper->SetInputConnection(this->TubeFilter->GetOutputPort());
   this->ControlPolygonMapper->SetInputData(this->ControlPolygon);
   this->BezierSurfaceMapper = vtkSmartPointer<vtkPolyDataMapper>::New();
+  this->BezierSurfaceMapper->SetInputConnection(this->BezierSurfaceSource->GetOutputPort());
 
   this->ControlPolygonActor = vtkSmartPointer<vtkActor>::New();
   this->ControlPolygonActor->SetMapper(this->ControlPolygonMapper);
   this->ControlPolygonActor->SetProperty(this->GetControlPointsPipeline(Unselected)->Property);
   this->BezierSurfaceActor = vtkSmartPointer<vtkActor>::New();
-  this->BezierSurfaceActor->SetMapper(this->BezierSurfaceMapper);  
+  this->BezierSurfaceActor->SetMapper(this->BezierSurfaceMapper);
+  this->BezierSurfaceActor->SetProperty(this->GetControlPointsPipeline(Unselected)->Property);
 
   this->BezierSurfacePointLocator = vtkSmartPointer<vtkCellLocator>::New();
 }
@@ -80,6 +87,21 @@ void vtkSlicerBezierSurfaceRepresentation3D::UpdateFromMRML(vtkMRMLNode* caller,
 
   this->BuildControlPolygon(this->ControlPolygon, false);
 
+  if(this->ControlPolygon->GetNumberOfPoints() == 16)
+    this->BezierSurfaceSource->SetControlPoints(this->ControlPolygon->GetPoints());
+
+  this->UpdateRelativeCoincidentTopologyOffsets(this->ControlPolygonMapper);
+
+  this->TubeFilter->SetRadius(this->ControlPointSize * this->MarkupsDisplayNode->GetLineThickness() * 0.5);
+
+  this->ControlPolygonActor->SetVisibility(this->GetAllControlPointsVisible());
+  int controlPointType = Active;
+  if (this->MarkupsDisplayNode->GetActiveComponentType() != vtkMRMLMarkupsDisplayNode::ComponentLine)
+    {
+    controlPointType = this->GetAllControlPointsSelected() ? Selected : Unselected;
+    }
+  this->ControlPolygonActor->SetProperty(this->GetControlPointsPipeline(controlPointType)->Property);
+
 }
 
 //----------------------------------------------------------------------
@@ -87,6 +109,7 @@ void vtkSlicerBezierSurfaceRepresentation3D::GetActors(vtkPropCollection *pc)
 {
   this->Superclass::GetActors(pc);
   this->ControlPolygonActor->GetActors(pc);
+  this->BezierSurfaceActor->GetActors(pc);
 }
 
 //----------------------------------------------------------------------
@@ -95,6 +118,7 @@ void vtkSlicerBezierSurfaceRepresentation3D::ReleaseGraphicsResources(
 {
   this->Superclass::ReleaseGraphicsResources(win);
   this->ControlPolygonActor->ReleaseGraphicsResources(win);
+  this->BezierSurfaceActor->ReleaseGraphicsResources(win);
 }
 
 //----------------------------------------------------------------------
@@ -105,6 +129,10 @@ int vtkSlicerBezierSurfaceRepresentation3D::RenderOverlay(vtkViewport *viewport)
   if (this->ControlPolygonActor->GetVisibility())
     {
     count +=  this->ControlPolygonActor->RenderOverlay(viewport);
+    }
+  if (this->BezierSurfaceActor->GetVisibility())
+    {
+      count += this->BezierSurfaceActor->RenderOverlay(viewport);
     }
   return count;
 }
@@ -120,6 +148,10 @@ int vtkSlicerBezierSurfaceRepresentation3D::RenderOpaqueGeometry(
     this->TubeFilter->SetRadius(this->ControlPointSize * this->MarkupsDisplayNode->GetLineThickness() * 0.5);
     count += this->ControlPolygonActor->RenderOpaqueGeometry(viewport);
     }
+  if (this->BezierSurfaceActor->GetVisibility())
+    {
+      count += this->BezierSurfaceActor->RenderOpaqueGeometry(viewport);      
+    }
   return count;
 }
 
@@ -132,6 +164,10 @@ int vtkSlicerBezierSurfaceRepresentation3D::RenderTranslucentPolygonalGeometry(
   if (this->ControlPolygonActor->GetVisibility())
     {
     count += this->ControlPolygonActor->RenderTranslucentPolygonalGeometry(viewport);
+    }
+  if (this->BezierSurfaceActor->GetVisibility())
+    {
+      count += this->BezierSurfaceActor->RenderTranslucentPolygonalGeometry(viewport);
     }
   return count;
 }
@@ -147,6 +183,10 @@ vtkTypeBool vtkSlicerBezierSurfaceRepresentation3D::HasTranslucentPolygonalGeome
     {
     return true;
     }
+  if (this->BezierSurfaceActor->GetVisibility() && this->BezierSurfaceActor->HasTranslucentPolygonalGeometry())
+    {
+      return true;
+    }
   return false;
 }
 
@@ -154,7 +194,8 @@ vtkTypeBool vtkSlicerBezierSurfaceRepresentation3D::HasTranslucentPolygonalGeome
 double *vtkSlicerBezierSurfaceRepresentation3D::GetBounds()
 {
   vtkBoundingBox boundingBox;
-  const std::vector<vtkProp*> actors({ this->ControlPolygonActor });
+  const std::vector<vtkProp*> actors({ this->ControlPolygonActor,
+	this->BezierSurfaceActor });
   this->AddActorsBounds(boundingBox, actors, Superclass::GetBounds());
   boundingBox.GetBounds(this->Bounds);
   return this->Bounds;
@@ -215,7 +256,7 @@ void vtkSlicerBezierSurfaceRepresentation3D::SetMarkupsNode(vtkMRMLMarkupsNode *
       }
   }
   this->Superclass::SetMarkupsNode(markupsNode);
-ppp}
+}
 
 //----------------------------------------------------------------------
 void vtkSlicerBezierSurfaceRepresentation3D::CanInteractWithBezierSurface(
@@ -292,10 +333,17 @@ void vtkSlicerBezierSurfaceRepresentation3D::BuildControlPolygon(vtkPolyData* co
     }
 
   double pos[3] = { 0.0 };
-  vtkIdType line[2] = {0,0};
   for (int i = 0; i < numberOfControlPoints; i++)
     {
-    // Add the node
+      vtkSmartPointer<vtkPolyLine> polyLine1 =
+	vtkSmartPointer<vtkPolyLine>::New();
+      polyLine1->GetPointIds()->SetNumberOfIds(2);
+      
+      vtkSmartPointer<vtkPolyLine> polyLine2 =
+	vtkSmartPointer<vtkPolyLine>::New();
+      polyLine2->GetPointIds()->SetNumberOfIds(2);
+      
+      // Add the node
     if (displayPosition)
       {
       this->GetNthControlPointDisplayPosition(i, pos);
@@ -312,9 +360,9 @@ void vtkSlicerBezierSurfaceRepresentation3D::BuildControlPolygon(vtkPolyData* co
       case 4:
       case 8:
       case 12:
-	line[0] = i;
-	line[1] = i-4;
-	controlPolygon->InsertNextCell(2, line);
+	polyLine1->GetPointIds()->SetId(0,i);
+	polyLine1->GetPointIds()->SetId(1,i-4);
+	controlPolygon->InsertNextCell(polyLine1);
 	break;
       case 5:
       case 6:
@@ -325,15 +373,15 @@ void vtkSlicerBezierSurfaceRepresentation3D::BuildControlPolygon(vtkPolyData* co
       case 13:
       case 14:
       case 15:
-	line[0] = i -4;
-	line[1] = i;
-	controlPolygon->InsertNextCell(2, line);
+	polyLine1->GetPointIds()->SetId(0,i-4);
+	polyLine1->GetPointIds()->SetId(1,i);
+	controlPolygon->InsertNextCell(polyLine1);
       case 1:
       case 2:
       case 3:
-	line[0] = i -1;
-	line[1] = i;
-	controlPolygon->InsertNextCell(2, line);
+	polyLine2->GetPointIds()->SetId(0,i-1);
+	polyLine2->GetPointIds()->SetId(1,i);
+	controlPolygon->InsertNextCell(polyLine2);
 	break;	
       }
     

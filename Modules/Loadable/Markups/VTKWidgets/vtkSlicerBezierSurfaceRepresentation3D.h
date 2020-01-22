@@ -35,6 +35,7 @@ class vtkCellLocator;
 class vtkPolyDataMapper;
 class vtkPolyData;
 class vtkTubeFilter;
+class vtkBezierSurfaceSource;
 
 class vtkMRMLInteractionEventData;
 
@@ -80,8 +81,8 @@ protected:
 
   void SetMarkupsNode(vtkMRMLMarkupsNode *markupsNode) override;
 
+  vtkSmartPointer<vtkBezierSurfaceSource> BezierSurfaceSource;
   vtkSmartPointer<vtkPolyData> ControlPolygon;
-  vtkSmartPointer<vtkPolyData> BezierSurface;
   vtkSmartPointer<vtkPolyDataMapper> ControlPolygonMapper;
   vtkSmartPointer<vtkPolyDataMapper> BezierSurfaceMapper;
   vtkSmartPointer<vtkActor> ControlPolygonActor;
