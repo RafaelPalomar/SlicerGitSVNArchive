@@ -144,7 +144,8 @@ double qSlicerSubjectHierarchyMarkupsPlugin::canAddNodeToSubjectHierarchy(
            node->IsA("vtkMRMLMarkupsLineNode") ||
            node->IsA("vtkMRMLMarkupsAngleNode") ||
            node->IsA("vtkMRMLMarkupsCurveNode") ||
-           node->IsA("vtkMRMLMarkupsClosedCurveNode")
+           node->IsA("vtkMRMLMarkupsClosedCurveNode")||
+	   node->IsA("vtkMRMLMarkupsBezierSurfaceNode")
            )
     {
     // Item is a markup
@@ -175,7 +176,8 @@ double qSlicerSubjectHierarchyMarkupsPlugin::canOwnSubjectHierarchyItem(vtkIdTyp
        associatedNode->IsA("vtkMRMLMarkupsLineNode") ||
        associatedNode->IsA("vtkMRMLMarkupsAngleNode") ||
        associatedNode->IsA("vtkMRMLMarkupsCurveNode") ||
-       associatedNode->IsA("vtkMRMLMarkupsClosedCurveNode")))
+       associatedNode->IsA("vtkMRMLMarkupsClosedCurveNode")||
+       associatedNode->IsA("vtkMRMLMarkupsBezierSurfaceNode")))
     {
     // Item is a markup
     return 0.5;

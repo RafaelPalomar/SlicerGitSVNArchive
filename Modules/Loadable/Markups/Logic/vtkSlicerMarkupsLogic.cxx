@@ -28,6 +28,7 @@
 #include "vtkMRMLMarkupsAngleNode.h"
 #include "vtkMRMLMarkupsCurveNode.h"
 #include "vtkMRMLMarkupsClosedCurveNode.h"
+#include "vtkMRMLMarkupsBezierSurfaceNode.h"
 #include "vtkMRMLMarkupsNode.h"
 #include "vtkMRMLMarkupsStorageNode.h"
 
@@ -203,6 +204,7 @@ void vtkSlicerMarkupsLogic::ObserveMRMLScene()
     selectionNode->AddNewPlaceNodeClassNameToList("vtkMRMLMarkupsAngleNode", ":/Icons/MarkupsAngleMouseModePlace.png", "Angle");
     selectionNode->AddNewPlaceNodeClassNameToList("vtkMRMLMarkupsCurveNode", ":/Icons/MarkupsCurveMouseModePlace.png", "Open Curve");
     selectionNode->AddNewPlaceNodeClassNameToList("vtkMRMLMarkupsClosedCurveNode", ":/Icons/MarkupsClosedCurveMouseModePlace.png", "Closed Curve");
+    selectionNode->AddNewPlaceNodeClassNameToList("vtkMRMLMarkupsBezierSurfaceNode", ":/Icons/MarkupsBezierSurfaceMouseModePlace.png", "Bezier Surface");
 
     // trigger an update on the mouse mode toolbar
     this->GetMRMLScene()->EndState(vtkMRMLScene::BatchProcessState);
@@ -225,6 +227,7 @@ void vtkSlicerMarkupsLogic::RegisterNodes()
   scene->RegisterNodeClass(vtkSmartPointer<vtkMRMLMarkupsAngleNode>::New());
   scene->RegisterNodeClass(vtkSmartPointer<vtkMRMLMarkupsCurveNode>::New());
   scene->RegisterNodeClass(vtkSmartPointer<vtkMRMLMarkupsClosedCurveNode>::New());
+  scene->RegisterNodeClass(vtkSmartPointer<vtkMRMLMarkupsBezierSurfaceNode>::New());
 
   // Display nodes
   scene->RegisterNodeClass(vtkSmartPointer<vtkMRMLMarkupsDisplayNode>::New());

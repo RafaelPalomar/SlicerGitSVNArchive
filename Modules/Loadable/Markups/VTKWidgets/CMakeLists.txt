@@ -34,6 +34,12 @@ set(${KIT}_SRCS
   vtkSlicerCurveWidget.h
   vtkSlicerClosedCurveWidget.cxx
   vtkSlicerClosedCurveWidget.h
+  vtkSlicerBezierSurfaceWidget.cxx
+  vtkSlicerBezierSurfaceWidget.h
+  vtkSlicerBezierSurfaceRepresentation3D.cxx
+  vtkSlicerBezierSurfaceRepresentation3D.h
+  vtkSlicerBezierSurfaceRepresentation2D.cxx
+  vtkSlicerBezierSurfaceRepresentation2D.h
   vtkSlicerLineRepresentation3D.cxx
   vtkSlicerLineRepresentation3D.h
   vtkSlicerLineRepresentation2D.cxx

@@ -6,6 +6,7 @@
 #include <vtkMRMLMarkupsAngleNode.h>
 #include <vtkMRMLMarkupsClosedCurveNode.h>
 #include <vtkMRMLMarkupsCurveNode.h>
+#include <vtkMRMLMarkupsBezierSurfaceNode.h>
 #include <vtkMRMLMarkupsDisplayNode.h>
 #include <vtkMRMLMarkupsFiducialNode.h>
 #include <vtkMRMLMarkupsLineNode.h>
@@ -25,6 +26,9 @@
 #include <vtkSlicerPointsWidget.h>
 #include <vtkSlicerPointsRepresentation2D.h>
 #include <vtkSlicerPointsRepresentation3D.h>
+#include <vtkSlicerBezierSurfaceWidget.h>
+#include <vtkSlicerBezierSurfaceRepresentation2D.h>
+#include <vtkSlicerBezierSurfaceRepresentation3D.h>
 
 // MRMLDisplayableManager includes
 #include <vtkMRMLDisplayableManagerGroup.h>
@@ -91,6 +95,7 @@ vtkMRMLMarkupsDisplayableManager::vtkMRMLMarkupsDisplayableManager()
   this->Focus.insert("vtkMRMLMarkupsLineNode");
   this->Focus.insert("vtkMRMLMarkupsCurveNode");
   this->Focus.insert("vtkMRMLMarkupsClosedCurveNode");
+  this->Focus.insert("vtkMRMLMarkupsBezierSurfaceNode");
 
   this->Helper = vtkMRMLMarkupsDisplayableManagerHelper::New();
   this->Helper->SetDisplayableManager(this);
@@ -594,6 +599,10 @@ vtkMRMLMarkupsNode* vtkMRMLMarkupsDisplayableManager::CreateNewMarkupsNode(
     {
     nodeName = "C";
     }
+  else if (markupsNodeClassName == "vtkMRMLMarkupsBezierSurfaceNode")
+    {
+      nodeName = "B";
+    }
   vtkMRMLMarkupsNode* markupsNode = vtkMRMLMarkupsNode::SafeDownCast(
     this->GetMRMLScene()->AddNewNodeByClass(markupsNodeClassName, nodeName));
   markupsNode->AddDefaultStorageNode();
@@ -949,6 +958,10 @@ vtkSlicerMarkupsWidget * vtkMRMLMarkupsDisplayableManager::CreateWidget(vtkMRMLM
   else if (vtkMRMLMarkupsClosedCurveNode::SafeDownCast(markupsNode))
     {
     widget = vtkSlicerClosedCurveWidget::New();
+    }
+  else if (vtkMRMLMarkupsBezierSurfaceNode::SafeDownCast(markupsNode))
+    {
+      widget = vtkSlicerBezierSurfaceWidget::New();
     }
   else
     {

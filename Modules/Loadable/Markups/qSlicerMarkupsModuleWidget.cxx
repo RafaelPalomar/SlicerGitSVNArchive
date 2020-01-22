@@ -60,6 +60,7 @@
 #include "vtkMRMLMarkupsAngleNode.h"
 #include "vtkMRMLMarkupsCurveNode.h"
 #include "vtkMRMLMarkupsClosedCurveNode.h"
+#include "vtkMRMLMarkupsBezierSurfaceNode.h"
 #include "vtkMRMLMarkupsFiducialStorageNode.h"
 #include "vtkMRMLMarkupsNode.h"
 #include "vtkSlicerMarkupsLogic.h"
@@ -316,6 +317,8 @@ void qSlicerMarkupsModuleWidgetPrivate::setupUi(qSlicerWidget* widget)
     q, SLOT(onCreateMarkupsOpenCurve()));
   QObject::connect(this->createClosedCurvePushButton, SIGNAL(clicked()),
     q, SLOT(onCreateMarkupsClosedCurve()));
+  QObject::connect(this->createBezierSurfacePushButton, SIGNAL(clicked()),
+    q, SLOT(onCreateMarkupsBezierSurface()));
 
   // Make sure that the Jump to Slices radio buttons match the default of the
   // MRML slice node
@@ -1458,6 +1461,15 @@ void qSlicerMarkupsModuleWidget::onCreateMarkupsClosedCurve()
   if (this->mrmlScene())
     {
     this->onActiveMarkupMRMLNodeAdded(this->mrmlScene()->AddNewNodeByClass("vtkMRMLMarkupsClosedCurveNode"));
+    }
+}
+
+//-----------------------------------------------------------------------------
+void qSlicerMarkupsModuleWidget::onCreateMarkupsBezierSurface()
+{
+  if (this->mrmlScene())
+    {
+    this->onActiveMarkupMRMLNodeAdded(this->mrmlScene()->AddNewNodeByClass("vtkMRMLMarkupsBezierSurfaceNode"));
     }
 }
 
