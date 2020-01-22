@@ -129,7 +129,7 @@ if((NOT DEFINED PYTHON_INCLUDE_DIR
 
   ExternalProject_SetIfNotDefined(
     Slicer_${proj}_GIT_TAG
-    "274bfe64582ffba0e489acfce8d2d5b05bdd1738"
+    "9a31736e97acf0a2de0055e42d3ad697fdf486f5"
     QUIET
     )
 
