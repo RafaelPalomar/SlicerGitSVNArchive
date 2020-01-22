@@ -70,15 +70,22 @@ public:
   void CanInteractWithBezierSurface(vtkMRMLInteractionEventData* interactionEventData,
     int &foundComponentType, int &componentIndex, double &closestDistance2);
 
+  // This overrides the BuildLine from the parent class, since the topology
+  // is different
+  void BuildControlPolygon(vtkPolyData* linePolyData, bool displayPosition);
+  
 protected:
   vtkSlicerBezierSurfaceRepresentation3D();
   ~vtkSlicerBezierSurfaceRepresentation3D() override;
 
   void SetMarkupsNode(vtkMRMLMarkupsNode *markupsNode) override;
 
-  vtkSmartPointer<vtkPolyData> Line;
-  vtkSmartPointer<vtkPolyDataMapper> LineMapper;
-  vtkSmartPointer<vtkActor> LineActor;
+  vtkSmartPointer<vtkPolyData> ControlPolygon;
+  vtkSmartPointer<vtkPolyData> BezierSurface;
+  vtkSmartPointer<vtkPolyDataMapper> ControlPolygonMapper;
+  vtkSmartPointer<vtkPolyDataMapper> BezierSurfaceMapper;
+  vtkSmartPointer<vtkActor> ControlPolygonActor;
+  vtkSmartPointer<vtkActor> BezierSurfaceActor;
 
   vtkSmartPointer<vtkTubeFilter> TubeFilter;
 

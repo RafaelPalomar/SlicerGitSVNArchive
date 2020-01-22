@@ -1,8 +1,8 @@
 #include "vtkSlicerBezierSurfaceWidget.h"
 
 #include "vtkMRMLSliceNode.h"
-#include "vtkSlicerCurveRepresentation2D.h"
-#include "vtkSlicerCurveRepresentation3D.h"
+#include "vtkSlicerBezierSurfaceRepresentation2D.h"
+#include "vtkSlicerBezierSurfaceRepresentation3D.h"
 #include "vtkCommand.h"
 #include "vtkEvent.h"
 
@@ -30,11 +30,11 @@ void vtkSlicerBezierSurfaceWidget::CreateDefaultRepresentation(
   vtkSmartPointer<vtkSlicerMarkupsWidgetRepresentation> rep = nullptr;
   if (vtkMRMLSliceNode::SafeDownCast(viewNode))
     {
-    rep = vtkSmartPointer<vtkSlicerCurveRepresentation2D>::New();
+    rep = vtkSmartPointer<vtkSlicerBezierSurfaceRepresentation2D>::New();
     }
   else
     {
-    rep = vtkSmartPointer<vtkSlicerCurveRepresentation3D>::New();
+    rep = vtkSmartPointer<vtkSlicerBezierSurfaceRepresentation3D>::New();
     }
   this->SetRenderer(renderer);
   this->SetRepresentation(rep);
