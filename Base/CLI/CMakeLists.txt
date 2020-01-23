@@ -75,6 +75,10 @@ if(NOT ${PROJECT_NAME}_INSTALL_NO_DEVELOPMENT)
   install(
     FILES ${headers} ${CMAKE_CURRENT_BINARY_DIR}/${configure_header_file}
     DESTINATION ${Slicer_INSTALL_INCLUDE_DIR}/${PROJECT_NAME} COMPONENT Development)
+  install(
+    FILES ${SlicerExecutionModel_CLI_LIBRARY_WRAPPER_CXX}
+    DESTINATION "${Slicer_INSTALL_SHARE_DIR}"
+    )
 endif()
 
 # --------------------------------------------------------------------------
