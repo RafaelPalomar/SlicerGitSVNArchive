@@ -530,13 +530,19 @@ endif()
 # PythonQt wrapping
 # --------------------------------------------------------------------------
 if(MRMLWidgets_WRAP_PYTHON)
+
+  if(NOT DEFINED PYTHON_SITE_DIR)
+    set(PYTHON_SITE_DIR "${Slicer_INSTALL_LIB_DIR}")
+  endif()
+
   ctkMacroBuildLibWrapper(
     NAMESPACE "org.slicer.libs"
     TARGET ${lib_name}
     SRCS "${MRMLWidgets_SRCS}"
     INSTALL_BIN_DIR ${Slicer_INSTALL_BIN_DIR}
-    INSTALL_LIB_DIR ${Slicer_INSTALL_LIB_DIR}
+    INSTALL_LIB_DIR ${PYTHON_SITE_DIR}
     )
+  
   # Folder
   if(NOT "${${PROJECT_NAME}_FOLDER}" STREQUAL "")
     set_target_properties(${lib_name}PythonQt PROPERTIES FOLDER ${${PROJECT_NAME}_FOLDER})

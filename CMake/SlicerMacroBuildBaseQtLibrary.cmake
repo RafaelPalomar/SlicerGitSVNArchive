@@ -251,12 +251,17 @@ macro(SlicerMacroBuildBaseQtLibrary)
   # PythonQt wrapping
   # --------------------------------------------------------------------------
   if(Slicer_USE_PYTHONQT AND SLICERQTBASELIB_WRAP_PYTHONQT)
+
+    if(NOT DEFINED PYTHON_SITE_DIR)
+      set(PYTHON_SITE_DIR "${Slicer_INSTALL_LIB_DIR}")
+    endif()
+
     ctkMacroBuildLibWrapper(
       NAMESPACE "osb" # Use "osb" instead of "org.slicer.base" to avoid build error on windows
       TARGET ${lib_name}
       SRCS "${SLICERQTBASELIB_SRCS}"
       INSTALL_BIN_DIR ${Slicer_INSTALL_BIN_DIR}
-      INSTALL_LIB_DIR ${Slicer_INSTALL_LIB_DIR}
+      INSTALL_LIB_DIR ${PYTHON_SITE_DIR}
       )
     set_target_properties(${lib_name}PythonQt PROPERTIES FOLDER "Core-Base")
   endif()

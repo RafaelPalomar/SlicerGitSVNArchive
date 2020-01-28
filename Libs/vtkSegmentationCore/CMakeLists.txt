@@ -155,6 +155,10 @@ if(VTK_WRAP_PYTHON AND BUILD_SHARED_LIBS)
 
   include(vtkMacroKitPythonWrap)
 
+    if(NOT DEFINED PYTHON_SITE_DIR)
+    set(PYTHON_SITE_DIR "${${PROJECT_NAME}_INSTALL_LIB_DIR}")
+  endif()
+  
   vtkMacroKitPythonWrap(
     KIT_NAME ${PROJECT_NAME}
     KIT_SRCS ${vtkSegmentationCore_SRCS}

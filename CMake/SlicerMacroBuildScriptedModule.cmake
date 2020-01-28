@@ -97,12 +97,16 @@ macro(slicerMacroBuildScriptedModule)
     set(_no_install_subdir_option "")
   endif()
 
+  if(NOT DEFINED PYTHON_SITE_DIR)
+    set(PYTHON_SITE_DIR "${Slicer_INSTALL_QTSCRIPTEDMODULES_LIB_DIR}")
+  endif()
+  
   ctkMacroCompilePythonScript(
     TARGET_NAME ${MY_SLICER_NAME}
     SCRIPTS "${MY_SLICER_SCRIPTS}"
     RESOURCES "${MY_SLICER_RESOURCES}"
     DESTINATION_DIR ${CMAKE_BINARY_DIR}/${Slicer_QTSCRIPTEDMODULES_LIB_DIR}${_destination_subdir}
-    INSTALL_DIR ${Slicer_INSTALL_QTSCRIPTEDMODULES_LIB_DIR}
+    INSTALL_DIR ${PYTHON_SITE_DIR}
     ${_no_install_subdir_option}
     )
 
