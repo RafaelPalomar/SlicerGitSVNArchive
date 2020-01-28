@@ -199,8 +199,9 @@ if(VTK_WRAP_PYTHON)
     KIT_NAME ${lib_name}
     KIT_SRCS ${SlicerBaseLogic_SRCS}
     KIT_PYTHON_LIBRARIES MRMLLogicPythonD
-    KIT_INSTALL_BIN_DIR ${Slicer_INSTALL_BIN_DIR}
-    KIT_INSTALL_LIB_DIR ${Slicer_INSTALL_LIB_DIR}
+    KIT_INSTALL_BIN_DIR ${Slicer_INSTALL_PYTHON_BIN_DIR}
+    KIT_INSTALL_LIB_DIR ${Slicer_INSTALL_PYTHOND_LIB_DIR}
+    KIT_MODULE_INSTALL_LIB_DIR ${Slicer_INSTALL_PYTHON_LIB_DIR}
     )
   # Export target
   set_property(GLOBAL APPEND PROPERTY Slicer_TARGETS ${lib_name}Python ${lib_name}PythonD)

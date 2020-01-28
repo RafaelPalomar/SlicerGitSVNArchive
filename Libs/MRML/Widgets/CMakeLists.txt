@@ -534,8 +534,8 @@ if(MRMLWidgets_WRAP_PYTHON)
     NAMESPACE "org.slicer.libs"
     TARGET ${lib_name}
     SRCS "${MRMLWidgets_SRCS}"
-    INSTALL_BIN_DIR ${Slicer_INSTALL_BIN_DIR}
-    INSTALL_LIB_DIR ${Slicer_INSTALL_LIB_DIR}
+    INSTALL_BIN_DIR ${Slicer_INSTALL_PYTHON_BIN_DIR}
+    INSTALL_LIB_DIR ${Slicer_INSTALL_PYTHON_LIB_DIR}
     )
   # Folder
   if(NOT "${${PROJECT_NAME}_FOLDER}" STREQUAL "")

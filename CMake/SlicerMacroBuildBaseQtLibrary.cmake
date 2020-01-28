@@ -255,8 +255,8 @@ macro(SlicerMacroBuildBaseQtLibrary)
       NAMESPACE "osb" # Use "osb" instead of "org.slicer.base" to avoid build error on windows
       TARGET ${lib_name}
       SRCS "${SLICERQTBASELIB_SRCS}"
-      INSTALL_BIN_DIR ${Slicer_INSTALL_BIN_DIR}
-      INSTALL_LIB_DIR ${Slicer_INSTALL_LIB_DIR}
+      INSTALL_BIN_DIR ${Slicer_INSTALL_PYTHON_BIN_DIR}
+      INSTALL_LIB_DIR ${Slicer_INSTALL_PYTHON_LIB_DIR}
       )
     set_target_properties(${lib_name}PythonQt PROPERTIES FOLDER "Core-Base")
   endif()

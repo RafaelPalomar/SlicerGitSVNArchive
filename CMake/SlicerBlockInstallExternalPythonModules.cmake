@@ -10,7 +10,7 @@ if(EXISTS ${VTK_PYTHON_MODULE}/vtkmodules)
   set(_vtk_package "vtkmodules") # Introduced in VTK9 kitware/vtk@2404228 on 2017.12.15
 endif()
 install(DIRECTORY ${VTK_PYTHON_MODULE}/${_vtk_package}
-  DESTINATION ${Slicer_INSTALL_BIN_DIR}/Python
+  DESTINATION ${Slicer_INSTALL_PYTHON_BIN_DIR}/Python
   USE_SOURCE_PERMISSIONS
   COMPONENT Runtime
   # VTK9: Add exclusions to avoid installing VTK's C++ Python modules
