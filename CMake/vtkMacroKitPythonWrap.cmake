@@ -143,7 +143,7 @@ macro(vtkMacroKitPythonWrap)
     # Add kit include dirs
     list(APPEND _kit_wrap_include_dirs ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR})
     if(DEFINED Slicer_Base_INCLUDE_DIRS)
-      list(APPEND _kit_wrap_include_dirs ${Slicer_Base_INCLUDE_DIRS})
+      list(APPEND _kit_wrap_include_dirs ${Slicer_Base_INCLUDE_DIRS} ${Slicer_Libs_INCLUDE_DIRS})
     endif()
     set(_kit_include_dirs ${${MY_KIT_NAME}_INCLUDE_DIRS})
     if(_kit_include_dirs)
