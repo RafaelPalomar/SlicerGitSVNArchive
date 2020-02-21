@@ -1,3 +1,12 @@
+cmake_minimum_required(VERSION 3.0)
+
+project(Endoscopy)
+
+find_package(Slicer REQUIRED)
+include(${Slicer_USE_FILE})
+
+find_package(CTK REQUIRED)
+include(${CTK_USE_FILE})
 
 #-----------------------------------------------------------------------------
 set(MODULE_NAME Endoscopy)
