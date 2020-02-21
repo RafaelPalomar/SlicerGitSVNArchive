@@ -15,6 +15,7 @@ include(${CTK_USE_FILE})
 find_package(ITK REQUIRED)
 include(${ITK_USE_FILE})
 
+find_package(PythonQt REQUIRED)
 
 #-----------------------------------------------------------------------------
 set(MODULE_NAME "Segmentations")
@@ -44,6 +45,7 @@ set(MODULE_INCLUDE_DIRECTORIES
   ${qSlicerSegmentationsEditorEffects_INCLUDE_DIRS}
   ${qSlicerSegmentationsSubjectHierarchyPlugins_INCLUDE_DIRS}
   ${qSlicerSubjectHierarchyModuleWidgets_INCLUDE_DIRS}
+  ${PYTHONQT_INCLUDE_DIR}
   )
 
 set(MODULE_SRCS
