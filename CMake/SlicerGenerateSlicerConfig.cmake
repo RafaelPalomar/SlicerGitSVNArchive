@@ -93,6 +93,7 @@ set(${target}_INCLUDE_DIRS
   endforeach()
 endif()
 
+# For build tree
 get_property(_wrap_hierarchy_targets GLOBAL PROPERTY SLICER_WRAP_HIERARCHY_TARGETS)
 if(_wrap_hierarchy_targets)
   foreach(target ${_wrap_hierarchy_targets})
@@ -103,6 +104,19 @@ set(${target}_WRAP_HIERARCHY_FILE
 )
   endforeach()
 endif()
+
+# For install tree
+get_property(_wrap_hierarchy_targets GLOBAL PROPERTY SLICER_WRAP_HIERARCHY_TARGETS)
+if(_wrap_hierarchy_targets)
+  foreach(target ${_wrap_hierarchy_targets})
+    set(Slicer_WRAP_HIERARCHY_FILES_INSTALL_CONFIG
+"${Slicer_WRAP_HIERARCHY_FILES_INSTALL_CONFIG}
+set(${target}_WRAP_HIERARCHY_FILE
+  \"${${target}_WRAP_HIERARCHY_INSTALL_FILE}\")"
+)
+  endforeach()
+endif()
+
 
 set(Slicer_Libs_INCLUDE_DIRS_CONFIG ${Slicer_Libs_INCLUDE_DIRS})
 set(Slicer_Base_INCLUDE_DIRS_CONFIG ${Slicer_Base_INCLUDE_DIRS})

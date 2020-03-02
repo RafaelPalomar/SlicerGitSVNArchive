@@ -9,6 +9,9 @@
 
 # Slicer Libs VTK wrapped libraries
 set(Slicer_Libs_VTK_WRAPPED_LIBRARIES "@Slicer_Libs_VTK_WRAPPED_LIBRARIES@")
+
+@Slicer_WRAP_HIERARCHY_FILES_INSTALL_CONFIG@
+
 set(PYTHON_INCLUDE_DIRS "@PYTHON_INCLUDE_DIRS@")
 
 # The C and C++ flags added by Slicer to the cmake-configured flags.
