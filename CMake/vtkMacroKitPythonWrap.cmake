@@ -287,6 +287,14 @@ macro(vtkMacroKitPythonWrap)
       LIBRARY DESTINATION ${MY_KIT_MODULE_INSTALL_LIB_DIR} COMPONENT ${Slicer_VTK_WRAP_MODULE_INSTALL_COMPONENT_IDENTIFIER}
       ARCHIVE DESTINATION ${MY_KIT_MODULE_INSTALL_LIB_DIR} COMPONENT Development
       )
+
+    install(
+      FILES "${Slicer_VTK_WRAP_HIERARCHY_DIR}/${MY_KIT_NAME}Hierarchy.txt"
+      DESTINATION "${Slicer_INSTALL_LIB_DIR}" COMPONENT Development
+      )
+
+    set(${MY_KIT_NAME}_WRAP_HIERARCHY_INSTALL_FILE "${CMAKE_INSTALL_PREFIX}/${Slicer_INSTALL_LIB_DIR}/${MY_KIT_NAME}Hierarchy.txt" CACHE INTERNAL "${MY_KIT_NAME} wrap hierarchy install file" FORCE)
+    
   endif()
 
 endmacro()
