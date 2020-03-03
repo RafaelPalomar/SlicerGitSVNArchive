@@ -8,6 +8,11 @@ configure_file(
  ${CMAKE_CURRENT_SOURCE_DIR}/Extensions/extension_description.s4ext.in
  ${Slicer_BINARY_DIR}/Utilities/Templates/Extensions/extension_description.s4ext.in
  COPYONLY
-)
+ )
+
+install(
+  FILES ${Slicer_BINARY_DIR}/Utilities/Templates/Extensions/extension_description.s4ext.in
+  DESTINATION ${CMAKE_INSTALL_PREFIX}/${Slicer_INSTALL_SHARE_DIR}/Wizard/Templates
+  )
 
 include(SlicerExtensionTemplatesGenerator)

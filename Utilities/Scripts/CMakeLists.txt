@@ -1,4 +1,5 @@
-if(Slicer_BUILD_EXTENSIONMANAGER_SUPPORT AND Slicer_USE_PYTHONQT)
+if(Slicer_USE_PYTHONQT)
+
   # Determine name of Python interpreter
   #
   # NOTE: Do NOT use ${PYTHON_EXECUTABLE}; when using our own Python, it is set

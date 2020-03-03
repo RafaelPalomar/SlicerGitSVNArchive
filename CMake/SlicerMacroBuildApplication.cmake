@@ -413,7 +413,7 @@ macro(slicerMacroBuildApplication)
 
   set(executable_name ${SLICERAPP_APPLICATION_NAME})
   if(NOT APPLE)
-    set(executable_name ${executable_name}App-real)
+    set(executable_name ${executable_name})
   endif()
   message(STATUS "Setting ${SLICERAPP_APPLICATION_NAME} executable name to '${executable_name}${CMAKE_EXECUTABLE_SUFFIX}'")
 

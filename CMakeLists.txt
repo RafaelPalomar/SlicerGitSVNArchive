@@ -932,10 +932,8 @@ add_subdirectory(Libs)
 add_subdirectory(Base)
 add_subdirectory(Resources)
 add_subdirectory(Utilities/Scripts)
-if(Slicer_BUILD_EXTENSIONMANAGER_SUPPORT)
-  add_subdirectory(Utilities/Scripts/SlicerWizard)
-  add_subdirectory(Utilities/Templates)
-endif()
+add_subdirectory(Utilities/Scripts/SlicerWizard)
+add_subdirectory(Utilities/Templates)
 
 #-----------------------------------------------------------------------------
 # Macro useful to build ModuleLogic, ModuleMRML and ModuleWidgets libraries

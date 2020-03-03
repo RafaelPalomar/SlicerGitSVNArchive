@@ -29,7 +29,11 @@ set(SlicerWizard_PYTHON_SCRIPTS
   WizardHelpFormatter.py
   )
 
-if(Slicer_BUILD_EXTENSIONMANAGER_SUPPORT AND Slicer_USE_PYTHONQT)
+if(NOT DEFINED PYTHON_SITE_DIR)
+  set(PYTHON_SITE_DIR ${Slicer_INSTALL_BIN_DIR}/Python)
+endif()
+
+if(Slicer_USE_PYTHONQT)
   ctkMacroCompilePythonScript(
     TARGET_NAME SlicerWizard
     SCRIPTS "${SlicerWizard_PYTHON_SCRIPTS}"
