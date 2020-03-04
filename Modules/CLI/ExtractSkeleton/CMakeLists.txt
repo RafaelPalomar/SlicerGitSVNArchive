@@ -1,3 +1,6 @@
+cmake_minimum_required(VERSION 3.0)
+
+project(ExtractSkeleton)
 
 #-----------------------------------------------------------------------------
 set(MODULE_NAME ExtractSkeleton)
@@ -5,10 +8,24 @@ set(MODULE_NAME ExtractSkeleton)
 #-----------------------------------------------------------------------------
 
 #
+# Slicer
+#
+find_package(Slicer REQUIRED)
+include(${Slicer_USE_FILE})
+
+
+#
 # SlicerExecutionModel
 #
 find_package(SlicerExecutionModel REQUIRED)
 include(${SlicerExecutionModel_USE_FILE})
+
+#
+# VTK
+#
+find_package(VTK REQUIRED)
+include(${VTK_USE_FILE})
+
 
 #
 # ITK
@@ -26,6 +43,8 @@ if(WIN32)
   add_definitions(-D_CRT_SECURE_NO_DEPRECATE)
 endif()
 
+link_directories(${Slicer_INSTALL_QTLOADABLEMODULES_LIB_DIR})
+
 #-----------------------------------------------------------------------------
 SEMMacroBuildCLI(
   NAME ${MODULE_NAME}
@@ -38,12 +57,21 @@ SEMMacroBuildCLI(
     coordTypes.h
     misc.h
     misc.cxx
-  TARGET_LIBRARIES ${ITK_LIBRARIES}
+    
+    TARGET_LIBRARIES
+    ${VTK_LIBRARIES}
+    ${ITK_LIBRARIES}
     MRMLCore
     vtkSlicerMarkupsModuleMRML
-  INCLUDE_DIRECTORIES
-    ${MRMLCore_INCLUDE_DIRS}
-    ${vtkSlicerMarkupsModuleMRML_INCLUDE_DIRS}
+    ITKFactoryRegistration
+    
+    INCLUDE_DIRECTORIES
+    ${Slicer_Libs_INCLUDE_DIRS}
+    ${Slicer_INSTALL_QTLOADABLEMODULES_INCLUDE_DIR}/vtkSlicerMarkupsModuleMRML
+
+    INSTALL_RUNTIME_DESTINATION ${Slicer_INSTALL_CLIMODULES_BIN_DIR}
+    INSTALL_LIBRARY_DESTINATION ${Slicer_INSTALL_CLIMODULES_LIB_DIR}
+    INSTALL_ARCHIVE_DESTINATION ${Slicer_INSTALL_CLIMODULES_SHARE_DIR}
   )
 
 #-----------------------------------------------------------------------------
