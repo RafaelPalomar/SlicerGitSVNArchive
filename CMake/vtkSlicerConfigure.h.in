@@ -48,6 +48,7 @@
 
 #define Slicer_MAIN_PROJECT_APPLICATION_NAME "@Slicer_MAIN_PROJECT_APPLICATION_NAME@"
 #define Slicer_BIN_DIR "@Slicer_BIN_DIR@"
+#define Slicer_ETC_DIR "@Slicer_ETC_DIR@"
 #define Slicer_LIB_DIR "@Slicer_LIB_DIR@"
 #define Slicer_INCLUDE_DIR "@Slicer_INCLUDE_DIR@"
 #define Slicer_SHARE_DIR "@Slicer_SHARE_DIR@"

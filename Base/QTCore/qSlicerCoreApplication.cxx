@@ -1190,7 +1190,7 @@ QString qSlicerCoreApplication::launcherSettingsFilePath()const
   QString appName = this->applicationName().replace("-tmp", "");
   if (this->isInstalled())
     {
-    return this->slicerHome() + "/" Slicer_BIN_DIR "/" + appName + "LauncherSettings.ini";
+      return QString("/") + Slicer_ETC_DIR "/" +  + "SlicerLauncherSettings.ini";
     }
   else
     {
