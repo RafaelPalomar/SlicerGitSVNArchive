@@ -66,7 +66,7 @@ set(Slicer_QM_DIR "${Slicer_BIN_DIR}/Translations")
 
 # for install tree
 if(NOT DEFINED Slicer_INSTALL_ROOT)
-  set(Slicer_INSTALL_ROOT "./")
+  set(Slicer_INSTALL_ROOT "")
 endif()
 
 if(APPLE)
@@ -109,6 +109,12 @@ if(NOT DEFINED Slicer_INSTALL_PYTHON_BIN_DIR)
   set(Slicer_INSTALL_PYTHON_BIN_DIR ${Slicer_INSTALL_BIN_DIR})
 endif()
 
+if(NOT DEFINED Slicer_INSTALL_CMAKE_DIR)
+  set(Slicer_INSTALL_CMAKE_DIR ${Slicer_INSTALL_LIB_DIR}/CMake)
+endif()
+if(NOT DEFINED Slicer_INSTALL_CMAKE_CONFIG_DIR)
+  set(Slicer_INSTALL_CMAKE_CONFIG_DIR ${Slicer_INSTALL_LIB_DIR}/CMake)
+endif()
 
 #-----------------------------------------------------------------------------
 # Slicer CLI relative directories
@@ -188,7 +194,6 @@ endif()
 if(NOT DEFINED Slicer_INSTALL_QTLOADABLEMODULES_SHARE_DIR)
   set(Slicer_INSTALL_QTLOADABLEMODULES_SHARE_DIR "${Slicer_INSTALL_ROOT}${Slicer_QTLOADABLEMODULES_SHARE_DIR}")
 endif()
-
 
 #-----------------------------------------------------------------------------
 # Scripted Modules relative directories
