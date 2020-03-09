@@ -180,7 +180,6 @@ if(NOT DEFINED Slicer_INSTALL_QTLOADABLEMODULES_SHARE_DIR)
   set(Slicer_INSTALL_QTLOADABLEMODULES_SHARE_DIR "${Slicer_INSTALL_ROOT}${Slicer_QTLOADABLEMODULES_SHARE_DIR}")
 endif()
 
-
 #-----------------------------------------------------------------------------
 # Scripted Modules relative directories
 #-----------------------------------------------------------------------------
