@@ -93,8 +93,6 @@ protected:
 
   vtkSlicerSceneViewsModuleLogic();
   ~vtkSlicerSceneViewsModuleLogic() override;
-  vtkSlicerSceneViewsModuleLogic(const vtkSlicerSceneViewsModuleLogic&);
-  void operator=(const vtkSlicerSceneViewsModuleLogic&);
 
   void OnMRMLSceneNodeAdded(vtkMRMLNode* node) override;
   void OnMRMLSceneEndImport() override;
