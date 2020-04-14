@@ -277,8 +277,6 @@ protected:
 
   vtkSlicerAnnotationModuleLogic();
   ~vtkSlicerAnnotationModuleLogic() override;
-  vtkSlicerAnnotationModuleLogic(const vtkSlicerAnnotationModuleLogic&);
-  void operator=(const vtkSlicerAnnotationModuleLogic&);
 
   // Initialize listening to MRML events
   void SetMRMLSceneInternal(vtkMRMLScene * newScene) override;
