@@ -37,8 +37,6 @@ public:
 protected:
   vtkImageErode();
   ~vtkImageErode() override;
-  vtkImageErode(const vtkImageErode&);
-  void operator=(const vtkImageErode&);
 
   float Background;
   float Foreground;
