@@ -9,6 +9,8 @@ find_package(Qt5 COMPONENTS Core Widgets Network Xml PrintSupport REQUIRED)
 find_package(VTK REQUIRED)
 include(${VTK_USE_FILE})
 
+find_package(vtkAddon REQUIRED)
+
 find_package(CTK REQUIRED)
 include(${CTK_USE_FILE})
 

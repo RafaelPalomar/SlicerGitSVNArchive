@@ -37,6 +37,7 @@ set(${KIT}_TARGET_LIBRARIES
   ${MRML_LIBRARIES}
   ${VTK_LIBRARIES}
   ${ITK_LIBRARIES}
+  vtkAddon
   )
 
 link_directories(${Slicer_HOME}/${Slicer_INSTALL_LIB_DIR})
