@@ -33,6 +33,7 @@ if(Slicer_USE_PYTHONQT)
   # Install Python libexec scripts
   set(Slicer_LIBEXEC_PYTHON_SCRIPTS
     ExtensionWizard.py
+    ModuleWizard.py
     )
 
   ctkMacroCompilePythonScript(
