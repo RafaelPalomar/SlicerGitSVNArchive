@@ -154,3 +154,57 @@ cmake -DCMAKE_BUILD_TYPE:STRING=Release ../Slicer
 
 </div>
 
+### Build Slicer
+
+Once the Slicer build project files have been generated, the Slicer project can
+be build:
+
+```
+cd Slicer-SuperBuild-Debug
+make
+```
+
+<div class="admonition tip">
+ 
+  <p class="admonition-title">Tip</p> 
+  
+  <p>Building Slicer will generally take long
+  time, particularly on the first build or upon code/configuration changes. To
+  help speeding up the process one can use <code class="docutils literal
+  notranslate"><span class="pre">make -j&lt;N&gt;</span></code>, where <code
+  class="docutils literal notranslate"><span class="pre">N</span></code> is the
+  number of parallel builds. As a rule of thumb, many uses the <em>number of CPU
+  threads + 1</em> as the number of parallel builds.</p>
+  
+
+</div>
+
+
+<div class="admonition warning">
+ 
+  <p class="admonition-title">Warning</p>
+
+  <p>Increasing the number of parallel builds generally
+  increases the memory required for the build process. In the event that the
+  required memory exceeds the available memory, the process will either fail or
+  start using swap memory, which will make in practice the system to freeze.</p>
+
+</div>
+
+<div class="admonition tip">
+ 
+  <p class="admonition-title">Tip</p> 
+  
+  <p>Using parallel builds makes finding compilation errors difficult due to the
+  fact that all parallel build processes use the same screen otput, as opposed
+  to sequential builds, where the compilation process will stop at the error. A
+  common technique to have parallel builds and easily find errors is launch a
+  parallel build followed by a sequential build. For the parallel build, it is adviced to run <code
+  class="docutils literal notranslate"><span class="pre">make
+  -j&lt;N&gt; -k</span></code> to have the parallel build keep going as far as
+  possible before doing the sequential build with<code class="docutils literal
+  notranslate"><span class="pre">make</span></code></p>
+
+</div>
+
+
