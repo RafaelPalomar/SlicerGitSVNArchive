@@ -116,3 +116,41 @@ cd Slicer
 
 [comment]: <> (TODO: Link to the readthedocs equivalent of https://www.slicer.org/wiki/Documentation/Nightly/Developers/DevelopmentWithGit)
 
+### Configure and generate the Slicer build project files
+ 
+Slicer is highly configurable and multi-platform. To support this,
+Slicer needs a configuration of the build parameters before the build process
+takes place. In this configuration stage, it is possible to adjust variables
+that change the nature and behaviour of its components. For instance, the type
+of build (Debug or Release mode), whether to use system-installed libraries,
+let the build process fetch and compile own libraries, or enable/disable some of
+the software components and functionalities of Slicer.
+
+To obtain a default configuration of the Slicer build project use `cmake`:
+
+```
+mkdir Slicer-SuperBuild-Debug
+cd Slicer-SuperBuild-Debug
+cmake ../Slicer
+```
+It is possible to change variables with `cmake`. In the following example we
+change the built type (Debug as default) to Release:
+
+```
+cmake -DCMAKE_BUILD_TYPE:STRING=Release ../Slicer
+```
+
+<div class="admonition tip">
+ 
+  <p class="admonition-title">Tip</p>
+
+  <p>Instead of <code class="docutils literal notranslate"><span
+  class="pre">cmake</span></code>, one can use <code class="docutils literal
+  notranslate"><span class="pre">ccmake</span></code>, which provides a
+  text-based interface or <code class="docutils literal notranslate"><span
+  class="pre">ccmake</span></code>, which provides a graphical user interface.
+  These applications will also provide a list of variables that can be changed.
+  </p>
+
+</div>
+
