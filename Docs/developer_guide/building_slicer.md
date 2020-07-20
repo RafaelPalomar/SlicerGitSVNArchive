@@ -86,4 +86,33 @@ sudo pacman -S git make patch subversion gcc cmake qt5-base qt5-multimedia qt5-t
 
 #### Gentoo
 
+### Checkout Slicer source files
+
+The recommended way to obtain the source code of SLicer is cloning the repository using `git`:
+
+```
+git clone git://github.com/Slicer/Slicer.git
+```
+
+This will create a `Slicer` directory contaning the source code of Slicer.
+Hereafter we will call this directory the `source directory`.
+
+<div class="admonition warning">
+ 
+  <p class="admonition-title">Warning</p>
+
+  <p>It is highly recommended to <b>avoid</b> the use of the <b>space</b>
+  character in the name of the <code class="docutils literal notranslate"><span
+  class="pre">source directory</span></code> or any of its parent
+  directories.</p> </div>
+
+
+After obtaining the source code, we need to set up the development environment:
+
+```
+cd Slicer
+./Utilities/SetupForDevelopment.sh
+```
+
+[comment]: <> (TODO: Link to the readthedocs equivalent of https://www.slicer.org/wiki/Documentation/Nightly/Developers/DevelopmentWithGit)
 
