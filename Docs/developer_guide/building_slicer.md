@@ -40,6 +40,8 @@ code of slicer, generating the project files and build the project.
 - CMake for configuration/generation of the project.
   - (Optional) CMake curses gui to configure the project from the command line.
   - (Optional) CMake Qt gui to configure the project through a GUI.
+- GNU Make
+- GNU Patch
   
 In addition, Slicer requires a set of support libraries that are not includes as
 part of the *superbuild*:
