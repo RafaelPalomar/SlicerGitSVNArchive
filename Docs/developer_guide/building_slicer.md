@@ -208,3 +208,7 @@ make
 </div>
 
 
+### Running Slicer
+
+After the building process has successfully completed, the executable file to
+run slicer will be located in `./Slicer-build/Slicer`
