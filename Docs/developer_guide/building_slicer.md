@@ -77,6 +77,13 @@ Install the development tools and the support libraries:
 sudo apt install git subversion build-essential cmake cmake-curses-gui cmake-qt-gui qt5-default qtmultimedia5-dev qttools5-dev libqt5xmlpatterns5-dev libqt5svg5-dev qtwebengine5-dev qtscript5-dev qtbase5-private-dev libqt5x11extras5-dev libxt-dev 
 ```
 #### ArchLinux
+
+Install the development tools and the support libraries:
+
+```
+sudo pacman -S git make patch subversion gcc cmake qt5-base qt5-multimedia qt5-tools qt5-xmlpatterns qt5-svg qt5-webengine qt5-script qt5-x11extras libxt
+```
+
 #### Gentoo
 
 
